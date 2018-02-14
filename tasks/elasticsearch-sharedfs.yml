@@ -4,10 +4,10 @@
 - set_fact: instance_init_script={{init_script | dirname }}/{{es_instance_name}}_{{init_script | basename}}
 - set_fact: conf_dir={{ es_conf_dir }}/{{es_instance_name}}
 - set_fact: instance_sysd_script={{sysd_script | dirname }}/{{es_instance_name}}_{{sysd_script | basename}}
-- set_fact: instance_suffix={{inventory_hostname}}-{{ es_instance_name }}
-- set_fact: pid_dir={{ es_pid_dir }}/{{instance_suffix}}
-- set_fact: log_dir={{ es_log_dir }}/{{instance_suffix}}
-- set_fact: data_dirs={{ es_data_dirs | append_to_list('/'+instance_suffix) }}
+- set_fact: es_node_name={{inventory_hostname}}-{{ es_instance_name }}
+- set_fact: pid_dir={{ es_pid_dir }}/{{es_node_name}}
+- set_fact: log_dir={{ es_log_dir }}/{{es_node_name}}
+- set_fact: data_dirs={{ es_data_dirs | append_to_list('/'+es_node_name) }}
 
 #Clean up un-wanted package scripts to avoid confusion
 
